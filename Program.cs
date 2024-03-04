@@ -1,3 +1,6 @@
+using ControleDeContatos.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace ControleDeContatos
 {
     public class Program
@@ -8,7 +11,7 @@ namespace ControleDeContatos
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
